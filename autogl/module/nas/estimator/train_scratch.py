@@ -45,6 +45,7 @@ class TrainEstimator(BaseEstimator):
             with torch.no_grad():
                 return self.estimator.infer(boxmodel.model, dataset, mask)
         except RuntimeError as e:
+            print("Error triggered in train_scratch")
             if "cuda" in str(e) or "CUDA" in str(e):
                 INF = 100
                 fin = [-INF if eva.is_higher_better else INF for eva in self.evaluation]
