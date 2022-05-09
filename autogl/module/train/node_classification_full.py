@@ -233,7 +233,7 @@ class NodeClassificationFullTrainer(BaseNodeClassificationTrainer):
                 raise TypeError(
                     "PyTorch does not support loss type {}".format(self.loss)
                 )
-
+            loss = torch.autograd.Variable(loss, requires_grad = True)
             loss.backward()
             optimizer.step()
             if self.lr_scheduler_type:
