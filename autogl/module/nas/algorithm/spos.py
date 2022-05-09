@@ -302,6 +302,7 @@ class Spos(BaseNAS):
         self.model_optim.zero_grad()
         self._resample() # uniform sampling
         metric, loss = self._infer(mask="train")
+        loss = torch.autograd.Variable(loss, requires_grad = True)
         loss.backward()
         if self.grad_clip > 0:
             nn.utils.clip_grad_norm_(self.model.parameters(), self.grad_clip)
