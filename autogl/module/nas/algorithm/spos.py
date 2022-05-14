@@ -62,7 +62,7 @@ class Evolution:
         Probability that mutation happens in each dim. Default: 0.05
     """
 
-    def __init__(self, optimize_mode='maximize', population_size=100, sample_size=25, cycles=20000,
+    def __init__(self, optimize_mode='maximize', population_size=100, sample_size=25, cycles=3000,
                  mutation_prob=0.05,disable_progress=False):
         assert optimize_mode in ['maximize', 'minimize']
         assert sample_size < population_size
@@ -217,13 +217,13 @@ class Spos(BaseNAS):
 
     def __init__(
         self,
-        n_warmup=1000,
+        n_warmup=200,
         grad_clip=5.0,
         disable_progress=False,
         optimize_mode='maximize', 
         population_size=100, 
         sample_size=25, 
-        cycles=20000,
+        cycles=3000,
         mutation_prob=0.05,
         device="cuda",
     ):
