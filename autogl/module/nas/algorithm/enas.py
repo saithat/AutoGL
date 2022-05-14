@@ -161,6 +161,7 @@ class Enas(BaseNAS):
         self.model_optim.zero_grad()
         self._resample()
         metric, loss = self._infer()
+        loss = torch.autograd.Variable(loss, requires_grad = True)
         loss.backward()
         if self.grad_clip > 0:
             nn.utils.clip_grad_norm_(self.model.parameters(), self.grad_clip)
